@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlannerRouteImport } from './routes/planner'
+import { Route as SummariserRouteImport } from './routes/summariser'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlannerRoute = PlannerRouteImport.update({
+  id: '/planner',
+  path: '/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SummariserRoute = SummariserRouteImport.update({
+  id: '/summariser',
+  path: '/summariser',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/planner': typeof PlannerRoute
+  '/summariser': typeof SummariserRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/planner': typeof PlannerRoute
+  '/summariser': typeof SummariserRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/planner': typeof PlannerRoute
+  '/summariser': typeof SummariserRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/planner' | '/summariser'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/planner' | '/summariser'
+  id: '__root__' | '/' | '/planner' | '/summariser'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PlannerRoute: typeof PlannerRoute
+  SummariserRoute: typeof SummariserRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/planner': {
+      id: '/planner'
+      path: '/planner'
+      fullPath: '/planner'
+      preLoaderRoute: typeof PlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/summariser': {
+      id: '/summariser'
+      path: '/summariser'
+      fullPath: '/summariser'
+      preLoaderRoute: typeof SummariserRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PlannerRoute: PlannerRoute,
+  SummariserRoute: SummariserRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
