@@ -1,104 +1,120 @@
-# AI Workplace Hub
+# AI Workplace Productivity Assistant
 
-Build a morden, professional, responsive web application called AI Workplace Productivity Assistant. 
+A modern, responsive dashboard that helps employees and professionals save time by using AI to handle common workplace tasks. The application combines three AI-powered tools in one integrated platform: a Smart Email Generator, a Meeting Notes Summariser, and an AI Task Planner/Scheduler.
 
-The purpose of the application is to help employees and professionals save time and improve workplace productivity by using AI to manage common workplace productivity by using AI to manage common workplace tasks.
+## Features
 
-The application should be one integrated platform/dashboard containing the following three AI-powered features.
+### 1. Smart Email Generator
+- Generate professional workplace emails from a purpose statement and optional key information.
+- Choose from three tones: **Formal**, **Friendly**, or **Persuasive**.
+- Optionally specify the recipient.
+- Review and edit the AI-generated subject and body before copying.
+- One-click copy to clipboard.
 
-1. Smart Email Generator
+### 2. Meeting Notes Summariser
+- Paste long meeting notes and receive a concise summary.
+- Automatically extracts:
+  - Key points
+  - Decisions made
+  - Deadlines mentioned
+  - Action items and owners
+- Editable output panel for quick refinements.
 
-- Generate professional workplace emails.
+### 3. AI Task Planner / Scheduler
+- Enter multiple tasks and generate a daily or weekly schedule.
+- Set your available working hours per day.
+- AI prioritises tasks by deadline, priority, and dependencies.
+- Output includes time slots, priority labels, deadlines, and scheduling rationale.
+- Editable schedule output for last-minute adjustments.
 
-- Support different tones such as Formal, Friendly and Persuasive.
+## Design & UX
 
-- Allow users to enter the purpose and key information for the email.
+- Clean, modern SaaS-style dashboard inspired by Linear and Notion AI.
+- Fixed sidebar navigation with clear feature switching.
+- Responsive layout for desktop, tablet, and mobile.
+- Loading skeletons, error states, and smooth transitions.
+- Persistent Responsible AI disclaimer.
 
-- Display the AI-generated email in an editable output section.
+## Tech Stack
 
-- Allow users to copy the generated email.
+- **Framework:** [TanStack Start](https://tanstack.com/start) (React 19 + Vite 7)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **UI Components:** Radix UI primitives + shadcn/ui conventions
+- **AI:** [Lovable AI Gateway](https://docs.lovable.dev/features/ai-gateway) via the `ai` SDK
+- **Forms & Validation:** React Hook Form + Zod
+- **Icons:** Lucide React
 
-2. Meeting Notes Summariser
+## Getting Started
 
-- Allow users to enter or paste long meeting notes.
+### Prerequisites
 
--Summarise the meeting notes clearly and concisely.
+- Node.js (LTS recommended)
+- `bun` or `npm`
+- A Lovable AI Gateway key (set automatically in the Lovable environment)
 
--Identify deadlines mentioned in the notes.
+### Install dependencies
 
-- Identify decisions that were made.
+```bash
+bun install
+# or
+npm install
+```
 
-- Display the results in an organised and editable output section.
+### Run the development server
 
-3. AI Task Planner/ Scheduler
-
-- Allow users to enter multiple tasks.
-
-- Generate daily or weekly schedules.
-
-- Prioritise tasks effectively.
-
-- Organise tasks according to priority and deadlines provided by the user.
-
-- Display the AI-generated schedule in an editable format.
-
-Requirements
-
-- Modern dashboard UI.
-
-- Sidebar navigation.
-
-- Responsive design for desktop, tablet and mobile.
-
-- Clear input and output sections.
-
-- Structured AI prompts.
-
-- Editable AI-generated outputs.
-
-- Loading and error states
-
-- Clear navigation between the three features.
-
-- Responsible AI disclaimer.
-
-- Professional and user-friendly interface.
-
-Responsible AI
-
-Include a visible disclaimer stating
-
-"AI-genarated content may contain errors or omissions. Please review and verify AI-genereted information before using it for important workplace communication decisions or actions.
-
-The AI should use only the information provided by the user and should not invent facts, deadlines, decisions or other information. 
-
-Design Style
-
-The design should be clean, modern, professional and easy to use, similar to a modern SaaS productivity platform.
-
-Use a consistent layout, professional typography, clear buttons, intuitive icons and a polished dashboard experience.
-
-The final application should be functional and demonstrate practical AI implementation, strong prompt engineering, real-world workplace problem solving, responsible AI usage and modern UI/UX design.
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://ai-daily-drive.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/b0ffb198-0223-4975-8c39-e295d242722b).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
+bun run dev
+# or
 npm run dev
 ```
+
+The app will be available at `http://localhost:8080`.
+
+### Build for production
+
+```bash
+bun run build
+# or
+npm run build
+```
+
+### Lint and format
+
+```bash
+bun run lint
+bun run format
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   └── AppShell.tsx          # Dashboard layout, sidebar, output panel
+├── lib/
+│   ├── ai.functions.ts       # Server functions for email, notes, and planner
+│   ├── ai-gateway.server.ts  # AI provider configuration
+│   └── utils.ts              # Utility helpers
+├── routes/
+│   ├── __root.tsx            # Root layout with fonts and metadata
+│   ├── index.tsx             # Smart Email Generator
+│   ├── summariser.tsx        # Meeting Notes Summariser
+│   └── planner.tsx           # AI Task Planner
+├── styles.css                # Tailwind v4 theme and design tokens
+└── ...
+```
+
+## Responsible AI
+
+AI-generated content may contain errors or omissions. Please review and verify AI-generated information before using it for important workplace communication, decisions, or actions.
+
+The AI is instructed to use only the information you provide and to avoid inventing facts, deadlines, decisions, or other details. Always treat generated content as a draft that requires human review.
+
+## Deployment
+
+This project is built for the Lovable platform and can be published directly from the Lovable editor. Environment variables required by the AI Gateway are managed by Lovable Cloud.
+
+## License
+
+This project is provided as-is for demonstration and productivity use.
